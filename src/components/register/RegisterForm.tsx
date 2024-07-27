@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './registerForm.css';
+import useRegister from '../../core/hooks/useRegister';
 
 const RegisterForm = () => {
   const [firstname, setFirstname] = useState('');
@@ -8,6 +9,8 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { register, data, isLoading, isError } = useRegister();
 
   const handleLastnameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLastname(e.target.value);
@@ -29,9 +32,11 @@ const RegisterForm = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log({ firstname, lastname, email, password, confirmPassword });
+    const params = { firstname, lastname, email, password };
+
+    await register(params);
   };
 
   return (
@@ -81,8 +86,12 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <button className="register-button" onClick={handleSubmit}>
-            S'inscrire
+          <button
+            className="register-button"
+            onClick={handleSubmit}
+            disabled={isLoading}
+          >
+            {isLoading ? 'Chargement...' : "S'inscrire"}
           </button>
         </div>
       </form>
