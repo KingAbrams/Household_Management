@@ -23,19 +23,13 @@ const LoginForm = () => {
       <p className="login-form-title">Connexion</p>
       <form className="form">
         <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="exemple@gmail.com"
-            value={email}
-            onChange={handleEmailChange}
-          />
+          <label htmlFor="email">Email</label>
+          <input type="email" value={email} onChange={handleEmailChange} />
         </div>
         <div className="form-group">
           <label>Mot de passe</label>
           <input
             type="password"
-            placeholder="••••••••"
             value={password}
             onChange={handlePasswordChange}
           />
