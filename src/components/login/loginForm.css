@@ -17,7 +17,8 @@
   color: var(--color-grey);
 }
 
-.login-form-title {
+.login-form-title,
+.register-form-title {
   color: black;
   font-size: 1.6rem;
   font-weight: 700;
@@ -26,7 +27,9 @@
 }
 
 .form,
-.form-footer {
+.form-footer,
+.register-form,
+.register-form-footer {
   padding: 10px 40px 10px 40px;
 }
 
@@ -37,7 +40,8 @@
   flex-direction: column;
 }
 
-.form-group label {
+.form-group label,
+.register-form-group label {
   position: absolute;
   font-size: var(--text-label);
   font-weight: 600;
@@ -62,11 +66,13 @@
   font-size: 0.9rem;
 }
 
-.form-group input:hover {
+.form-group input:hover,
+.register-form-group input:hover {
   border-color: var(--color-primary);
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.register-form-group input:focus {
   outline: none;
   border: 0.5px solid var(--color-primary);
   box-shadow: 0 0 0 0.5px var(--color-primary);
@@ -76,11 +82,13 @@
   color: var(--color-grey);
 }
 
-.form-group input[type='password'] {
+.form-group input[type='password'],
+.register-form-group input[type='password'] {
   font-size: var(--text-password);
 }
 
-.form-group input[type='password']:focus {
+.form-group input[type='password']:focus,
+.register-form-group input[type='password']:focus {
   font-size: var(--text-password);
 }
 
@@ -88,7 +96,7 @@
   font-size: var(--text-password);
 }
 
-button {
+.login-button {
   cursor: pointer;
   width: 100%;
   border: none;
@@ -101,20 +109,24 @@ button {
   border-radius: 4px;
 }
 
-button:hover {
+.login-button:hover,
+.register-button:hover {
   background-color: rgba(8, 107, 179, 0.9);
 }
 
-.form-footer {
+.form-footer,
+.register-form-footer {
   font-size: var(--text-label);
   padding-bottom: 20px;
 }
 
-.form-footer p {
+.form-footer p,
+.register-form-footer p {
   text-align: center;
 }
 
-.form-footer a {
+.form-footer a,
+.register-form-footer a {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;

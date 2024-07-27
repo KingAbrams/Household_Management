@@ -23,7 +23,7 @@ const LoginForm = () => {
       <p className="login-form-title">Connexion</p>
       <form className="form">
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label>Email</label>
           <input type="email" value={email} onChange={handleEmailChange} />
         </div>
         <div className="form-group">
@@ -34,7 +34,9 @@ const LoginForm = () => {
             onChange={handlePasswordChange}
           />
         </div>
-        <button onClick={handleSubmit}>Se connecter</button>
+        <button className="login-button" onClick={handleSubmit}>
+          Se connecter
+        </button>
       </form>
 
       <div className="form-footer">

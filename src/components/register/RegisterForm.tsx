@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './registerForm.css';
 
 const RegisterForm = () => {
   const [firstname, setFirstname] = useState('');
@@ -34,29 +35,34 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
-      <h2>Inscription</h2>
-      <form>
-        <div>
-          <label>Nom</label>
-          <input type="text" value={lastname} onChange={handleLastnameChange} />
+    <div className="register-form-container">
+      <p className="register-form-title">Inscription</p>
+      <form className="register-form">
+        <div className="register-form-group-fullname">
+          <div className="register-form-group it1">
+            <label>Nom</label>
+            <input
+              type="text"
+              value={lastname}
+              onChange={handleLastnameChange}
+            />
+          </div>
+          <div className="register-form-group it2">
+            <label>Prénom</label>
+            <input
+              type="text"
+              value={firstname}
+              onChange={handleFirstnameChange}
+            />
+          </div>
         </div>
 
-        <div>
-          <label>Prénom</label>
-          <input
-            type="text"
-            value={firstname}
-            onChange={handleFirstnameChange}
-          />
-        </div>
-
-        <div>
+        <div className="register-form-group">
           <label>Email</label>
           <input type="email" value={email} onChange={handleEmailChange} />
         </div>
 
-        <div>
+        <div className="register-form-group">
           <label>Mot de passe</label>
           <input
             type="password"
@@ -65,8 +71,8 @@ const RegisterForm = () => {
           />
         </div>
 
-        <div>
-          <label>Confirmation du mot de passe</label>
+        <div className="register-form-group">
+          <label>Confirmation</label>
           <input
             type="password"
             value={confirmPassword}
@@ -75,13 +81,15 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <button onClick={handleSubmit}>S'inscrire</button>
+          <button className="register-button" onClick={handleSubmit}>
+            S'inscrire
+          </button>
         </div>
       </form>
 
-      <div>
+      <div className="register-form-footer">
         <p>
-          Vous avez déjà un compte ?<Link to="/login">Connectez-vous</Link>.
+          Vous avez déjà un compte? <Link to="/login">Connectez-vous</Link>
         </p>
       </div>
     </div>

@@ -1,0 +1,64 @@
+@import url('../../index.css');
+
+.register-form-container {
+  /* Variables */
+
+  --text-password: 1.2rem;
+  --text-label: 0.8rem;
+
+  /* Style */
+
+  width: 460px;
+  /* width: 550px; */
+  margin: 0 auto;
+  padding-right: 24px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 8px rgb(230, 230, 230);
+  font-size: 0.9rem;
+  color: var(--color-grey);
+}
+
+.register-form-group-fullname {
+  display: flex;
+  justify-content: space-between;
+}
+.register-form-group {
+  position: relative;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.register-form-group.it1 {
+  flex-basis: 350px;
+  margin-right: 40px;
+}
+
+.register-form-group input {
+  width: 100%;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 20px;
+  padding-top: 12px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 6px;
+}
+
+.register-button {
+  cursor: pointer;
+  width: 120px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 6px;
+  padding: 10px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 4px;
+}
+
+.register-form-footer {
+  margin-left: 24px;
+}
