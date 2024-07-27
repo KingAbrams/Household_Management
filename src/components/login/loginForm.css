@@ -1,0 +1,110 @@
+@import url('../../index.css');
+
+.login-form-container {
+  /* Variables */
+
+  --text-password: 1.2rem;
+  --text-label: 0.8rem;
+
+  /* Style */
+
+  width: 360px;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0px 2px 8px rgb(230, 230, 230);
+  font-size: 0.9rem;
+  color: rgb(63, 63, 63);
+}
+
+.login-form-title {
+  color: black;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.form,
+.form-footer {
+  padding: 10px 40px 10px 40px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: var(--text-label);
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 20px;
+  margin-bottom: 6px;
+  padding-top: 12px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  font-size: 0.9rem;
+}
+
+.form-group input:hover {
+  border-color: var(--color-primary);
+}
+
+.form-group input:focus {
+  outline: none;
+  border: 0.5px solid var(--color-primary);
+  box-shadow: 0 0 0 0.5px var(--color-primary);
+}
+
+.form-group input::placeholder {
+  color: var(--color-grey);
+}
+
+.form-group input[type='password'] {
+  font-size: var(--text-password);
+}
+
+.form-group input[type='password']:focus {
+  font-size: var(--text-password);
+}
+
+.form-group input[type='password']::placeholder {
+  font-size: var(--text-password);
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 16px;
+  padding: 10px;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: rgba(8, 107, 179, 0.9);
+}
+
+.form-footer {
+  font-size: var(--text-label);
+  padding-bottom: 20px;
+}
+
+.form-footer p {
+  text-align: center;
+}
+
+.form-footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}

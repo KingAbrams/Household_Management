@@ -1,4 +1,33 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
+
+  /* Color */
+  --color-primary: #086cb4;
+  --color-primary-rgba: rgba(8, 107, 179, 1);
+  --color-grey: #7f8084;
 }
+
+/* 
+
+Color Theme Swatches in RGBA
+
+rgba(31, 68, 140, 1)
+rgba(8, 107, 179, 1)
+rgba(0, 140, 219, 1)
+rgba(255, 188, 35, 1)
+rgba(255, 211, 63, 1)
+
+Color Theme Swatches in Hex
+
+#20448C
+#086CB4
+#008CDB
+#FFBC24
+#FFD340 
+
+Grey
+
+#7f8084
+
+*/

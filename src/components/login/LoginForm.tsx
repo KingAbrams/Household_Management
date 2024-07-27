@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './loginForm.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -18,17 +19,23 @@ const LoginForm = () => {
     console.log({ email, password });
   };
   return (
-    <div>
-      <h2>Connexion</h2>
-      <form>
-        <div>
+    <div className="login-form-container">
+      <p className="login-form-title">Connexion</p>
+      <form className="form">
+        <div className="form-group">
           <label>Email</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
+          <input
+            type="email"
+            placeholder="exemple@gmail.com"
+            value={email}
+            onChange={handleEmailChange}
+          />
         </div>
-        <div>
+        <div className="form-group">
           <label>Mot de passe</label>
           <input
             type="password"
+            placeholder="••••••••"
             value={password}
             onChange={handlePasswordChange}
           />
@@ -36,9 +43,9 @@ const LoginForm = () => {
         <button onClick={handleSubmit}>Se connecter</button>
       </form>
 
-      <div>
+      <div className="form-footer">
         <p>
-          Pas encore de compte ?<Link to="/register">Inscrivez-vous</Link>.
+          Pas encore de compte? <Link to="/register">Inscrivez-vous</Link>
         </p>
       </div>
     </div>
