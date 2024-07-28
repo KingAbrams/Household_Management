@@ -16,3 +16,27 @@ export interface IAlert {
   type: 'warning' | 'success';
   message: string;
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
+
+export interface IData {
+  token: string;
+  user: IResgisterResFetch;
+}
+
+export interface ILoginResError {
+  success: boolean;
+  status: number;
+  error: boolean;
+  message: string;
+  data: null;
+}
+
+export interface ILoginResSuccess {
+  success: boolean;
+  status: number;
+  data: IData;
+}

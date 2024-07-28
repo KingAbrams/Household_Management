@@ -116,7 +116,7 @@ const RegisterForm = () => {
     <div className="register-form-container">
       <div className="register-form-title">Inscription</div>
 
-      <div className="alert-placeholder">
+      <div className="register-alert-placeholder">
         {alert && <Alert type={alert.type} message={alert.message} />}
       </div>
 

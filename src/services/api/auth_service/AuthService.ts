@@ -1,8 +1,25 @@
 import { AUTH_SERVICE_API_HOST } from '../../../core/constants';
-import { IRegister, IResgisterResFetch } from '../../../core/types';
+import {
+  ILogin,
+  ILoginResError,
+  ILoginResSuccess,
+  IRegister,
+  IResgisterResFetch,
+} from '../../../core/types';
 
 class AuthService {
   constructor() {}
+
+  private getErrorMessage = (status: number): string => {
+    switch (status) {
+      case 401:
+        return 'Email or password invalid';
+      case 500:
+        return 'Internal server error';
+      default:
+        return `HTTP error: ${status}`;
+    }
+  };
 
   register = async ({
     firstname,
@@ -34,6 +51,47 @@ class AuthService {
     } catch (error) {
       const errMessage = `[AUT_SERVICE_API] Register failed ${error}`;
       throw new Error(errMessage);
+    }
+  };
+
+  login = async ({
+    email,
+    password,
+  }: ILogin): Promise<ILoginResSuccess | ILoginResError> => {
+    try {
+      const response = await fetch(`${AUTH_SERVICE_API_HOST}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errMessage = this.getErrorMessage(response.status);
+
+        return {
+          success: false,
+          status: response.status,
+          error: true,
+          message: errMessage,
+          data: null,
+        };
+      }
+
+      const data = await response.json();
+
+      return { success: true, status: response.status, data };
+    } catch (error) {
+      const errMessage = `[AUT_SERVICE_API] Internal Server Error ${error}`;
+
+      return {
+        success: false,
+        status: 500,
+        error: true,
+        message: errMessage,
+        data: null,
+      };
     }
   };
 }

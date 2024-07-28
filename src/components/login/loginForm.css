@@ -25,6 +25,22 @@
   text-align: center;
 }
 
+.login-alert-placeholder {
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+.login-alert {
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
 .form,
 .form-footer {
   padding: 10px 40px 10px 40px;
@@ -109,6 +125,14 @@
 .login-button:hover,
 .register-button:hover {
   background-color: rgba(8, 107, 179, 0.9);
+}
+
+.login-button:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  border: 1px solid #999999;
+  color: #666;
+  opacity: 0.7;
 }
 
 .form-footer,

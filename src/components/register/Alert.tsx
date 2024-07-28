@@ -6,7 +6,7 @@ const Alert = ({ type, message }: IAlert) => {
   return (
     <>
       {type === 'warning' ? (
-        <div className="alert alert-warning">
+        <div className="alert alert-warning ">
           <span className="alert-icon">⚠️</span>
           <span className="alert-message">
             <strong>Attention!</strong> {message}
