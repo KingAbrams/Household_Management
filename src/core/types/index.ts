@@ -1,2 +1,2 @@
 export type { IPerson, IPersonResFetch, IUsePersonData } from './personType';
-export type { IRegister, IResgisterResFetch } from './authServiceType';
+export type { IRegister, IResgisterResFetch, IAlert } from './authServiceType';

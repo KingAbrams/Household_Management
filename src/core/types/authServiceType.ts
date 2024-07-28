@@ -11,3 +11,8 @@ export interface IResgisterResFetch {
   lastname: string;
   email: string;
 }
+
+export interface IAlert {
+  type: 'warning' | 'success';
+  message: string;
+}

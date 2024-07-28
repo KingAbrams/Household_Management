@@ -8,7 +8,10 @@ const useRegister = () => {
   const [isError, setIsError] = useState(false);
 
   const register = async (params: IRegister): Promise<void> => {
+    setData(null);
     setIsLoading(true);
+    setIsError(false);
+
     try {
       const authService = new AuthService();
       const response = await authService.register(params);
@@ -21,7 +24,11 @@ const useRegister = () => {
     }
   };
 
-  return { register, data, isLoading, isError };
+  const resetError = () => {
+    setIsError(false);
+  };
+
+  return { register, resetError, data, isLoading, isError };
 };
 
 export default useRegister;
