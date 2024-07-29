@@ -1,20 +1,32 @@
 import { useEffect, useState } from 'react';
 import { IPerson, IUsePersonData } from '../types';
 import PersonService from '../../services/api/household_management/PersonService';
+import { IPersonFetchSuccess } from '../types/personType';
 
 const usePersonData = (): IUsePersonData => {
   const [persons, setPersons] = useState<IPerson[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [status, setStatus] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchPersonData = async () => {
       setIsLoading(true);
+
       try {
         const personService = new PersonService();
-        const personData = await personService.fetchPerson();
+        const response = await personService.fetchPerson();
 
-        setPersons(personData.data);
+        if (response.success) {
+          const personData = response as IPersonFetchSuccess;
+          const data: IPerson[] = personData.data.data;
+
+          setPersons(data);
+        } else {
+          setIsError(true);
+        }
+
+        setStatus(response.status);
       } catch (error) {
         setIsError(true);
 
@@ -30,7 +42,7 @@ const usePersonData = (): IUsePersonData => {
     fetchPersonData();
   }, []);
 
-  return { persons, isLoading, isError };
+  return { persons, isLoading, isError, status };
 };
 
 export default usePersonData;

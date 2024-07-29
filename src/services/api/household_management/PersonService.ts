@@ -1,23 +1,60 @@
 import { HOUSEHOLD_API_HOST } from '../../../core/constants';
-import { IPersonResFetch } from '../../../core/types';
+import { IPersonFetch } from '../../../core/types/personType';
 
 class PersonService {
   constructeur() {}
 
-  fetchPerson = async (): Promise<IPersonResFetch> => {
+  getToken = () => {
+    return localStorage.getItem('authToken');
+  };
+
+  private getErrorMessage = (status: number): string => {
+    switch (status) {
+      case 401:
+        return 'Unauthorized';
+      case 500:
+        return 'Internal server error';
+      default:
+        return `HTTP error: ${status}`;
+    }
+  };
+
+  fetchPerson = async (): Promise<IPersonFetch> => {
+    const token = this.getToken();
+
+    if (!token) {
+      throw new Error('[HOUSEHOLD_API] No token found');
+    }
+
     try {
-      const response = await fetch(`${HOUSEHOLD_API_HOST}/api/persons`);
+      const response = await fetch(`${HOUSEHOLD_API_HOST}/api/persons`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
       if (!response.ok) {
-        const message = `[HOUSEHOLD_API] HTTP error! Status: ${response.status}`;
-        throw new Error(message);
+        const errMessage = this.getErrorMessage(response.status);
+        return {
+          success: false,
+          status: response.status,
+          message: errMessage,
+        };
       }
 
       const data = await response.json();
-      return data;
+
+      return { success: true, status: response.status, data };
     } catch (error) {
       const errMessage = `[HOUSEHOLD_API] Failed to fetch Person data ${error}`;
-      throw new Error(errMessage);
+
+      return {
+        success: false,
+        status: 500,
+        message: errMessage,
+      };
     }
   };
 }

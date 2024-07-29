@@ -8,8 +8,8 @@ import useLogin from '../../core/hooks/useLogin';
 const LoginForm = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('evenndiyan@gmail.com');
-  const [password, setPassword] = useState('test1');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [alert, setAlert] = useState<IAlert | null>(null);
 
   const { login, resetError, data, isError, status, isLoading } = useLogin();

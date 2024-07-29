@@ -3,6 +3,20 @@ export interface IPersonResFetch {
   message: string;
 }
 
+export interface IPersonFetchSuccess {
+  success: boolean;
+  status: number;
+  data: IPersonResFetch;
+}
+
+export interface IPersonFetchError {
+  success: boolean;
+  status: number;
+  message: string;
+}
+
+export type IPersonFetch = IPersonFetchSuccess | IPersonFetchError;
+
 export interface IPerson {
   id: number;
   firstname: string | null;
@@ -21,4 +35,5 @@ export interface IUsePersonData {
   persons: IPerson[] | null;
   isLoading: boolean;
   isError: boolean;
+  status: number | null;
 }

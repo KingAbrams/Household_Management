@@ -24,6 +24,10 @@ const useLogin = () => {
 
       if (response.success) {
         setData(response.data);
+
+        if (response.data) {
+          localStorage.setItem('authToken', response.data.token);
+        }
       } else {
         setIsError(true);
       }
