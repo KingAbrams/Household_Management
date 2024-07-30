@@ -3,8 +3,11 @@ import TablePerson from '../../components/person/TablePerson';
 import usePersonData from '../../core/hooks/usePersonData';
 import { IUsePersonData } from '../../core/types';
 import { useEffect } from 'react';
+import { useAuth } from '../../core/hooks/useAuth';
 
 const Person = () => {
+  const { token } = useAuth();
+  console.log('[PERSON]MON CONTEXT', token);
   const navigate = useNavigate();
   const {
     persons,
