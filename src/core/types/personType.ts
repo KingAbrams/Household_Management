@@ -36,4 +36,5 @@ export interface IUsePersonData {
   isLoading: boolean;
   isError: boolean;
   status: number | null;
+  isExpiredToken: boolean;
 }

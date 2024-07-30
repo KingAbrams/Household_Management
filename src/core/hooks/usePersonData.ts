@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IPerson, IUsePersonData } from '../types';
+import { IPerson, IThowError, IUsePersonData } from '../types';
 import PersonService from '../../services/api/household_management/PersonService';
 import { IPersonFetchSuccess } from '../types/personType';
 
@@ -8,10 +8,12 @@ const usePersonData = (): IUsePersonData => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [status, setStatus] = useState<number | null>(null);
+  const [isExpiredToken, setIsExpiredToken] = useState(false);
 
   useEffect(() => {
     const fetchPersonData = async () => {
       setIsLoading(true);
+      setIsExpiredToken(false);
 
       try {
         const personService = new PersonService();
@@ -28,12 +30,18 @@ const usePersonData = (): IUsePersonData => {
 
         setStatus(response.status);
       } catch (error) {
+        const errorToken = error as IThowError;
+
         setIsError(true);
 
-        console.error(
-          '[HOUSEHOLD_API] Error fetching data from Person:',
-          error,
-        );
+        if (errorToken.message.includes('Token expired')) {
+          setIsExpiredToken(true);
+        } else {
+          console.error(
+            '[HOUSEHOLD_API] Error fetching data from Person:',
+            error,
+          );
+        }
       } finally {
         setIsLoading(false);
       }
@@ -42,7 +50,7 @@ const usePersonData = (): IUsePersonData => {
     fetchPersonData();
   }, []);
 
-  return { persons, isLoading, isError, status };
+  return { persons, isLoading, isError, status, isExpiredToken };
 };
 
 export default usePersonData;

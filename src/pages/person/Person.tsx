@@ -6,8 +6,13 @@ import { useEffect } from 'react';
 
 const Person = () => {
   const navigate = useNavigate();
-  const { persons, isLoading, isError, status }: IUsePersonData =
-    usePersonData();
+  const {
+    persons,
+    isLoading,
+    isError,
+    status,
+    isExpiredToken,
+  }: IUsePersonData = usePersonData();
 
   useEffect(() => {
     if (status === 401) {
@@ -15,6 +20,12 @@ const Person = () => {
       return;
     }
   }, [status, navigate]);
+
+  useEffect(() => {
+    if (isExpiredToken) {
+      navigate('/login');
+    }
+  }, [isExpiredToken, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');

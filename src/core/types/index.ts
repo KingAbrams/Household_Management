@@ -8,3 +8,4 @@ export type {
   ILoginResSuccess,
   IData,
 } from './authServiceType';
+export type { IThowError } from './errorType';
