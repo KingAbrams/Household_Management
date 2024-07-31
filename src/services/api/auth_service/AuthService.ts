@@ -6,20 +6,13 @@ import {
   IRegister,
   IResgisterResFetch,
 } from '../../../core/types';
+import ErrorService from '../tools/ErrorService';
 
 class AuthService {
-  constructor() {}
-
-  private getErrorMessage = (status: number): string => {
-    switch (status) {
-      case 401:
-        return 'Email or password invalid';
-      case 500:
-        return 'Internal server error';
-      default:
-        return `HTTP error: ${status}`;
-    }
-  };
+  private errorService: ErrorService;
+  constructor() {
+    this.errorService = new ErrorService();
+  }
 
   register = async ({
     firstname,
@@ -68,7 +61,7 @@ class AuthService {
       });
 
       if (!response.ok) {
-        const errMessage = this.getErrorMessage(response.status);
+        const errMessage = this.errorService.getErrorMessage(response.status);
 
         return {
           success: false,
