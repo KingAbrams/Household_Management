@@ -23,7 +23,8 @@ export interface ILogin {
 }
 
 export interface IData {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
   user: IResgisterResFetch;
 }
 
@@ -39,4 +40,9 @@ export interface ILoginResSuccess {
   success: boolean;
   status: number;
   data: IData;
+}
+
+export interface IResRefreshToken {
+  message: string;
+  accessToken: string;
 }

@@ -1,7 +1,11 @@
 import { IThowError } from '../../../core/types';
+import AuthService from '../auth_service/AuthService';
 
 class TokenService {
-  constructor() {}
+  private authService: AuthService;
+  constructor() {
+    this.authService = new AuthService();
+  }
 
   private getToken = () => {
     return localStorage.getItem('authToken');
@@ -23,14 +27,7 @@ class TokenService {
     return timeInSeconds > tokenExpiration;
   };
 
-  //   private isAuthenticated = (token: string | null) => {
-  //     if (!token) return false;
-  //     const tokenExp = this.getTokenExpiration(token);
-  //     const isExpired = this.isTokenExpired(tokenExp);
-  //     return isExpired;
-  //   };
-
-  validateToken = () => {
+  validateToken = async () => {
     const token = this.getToken();
     if (!token) {
       throw new Error('[HOUSEHOLD_API] No token found');
@@ -40,10 +37,13 @@ class TokenService {
     const isExpired = this.isTokenExpired(tokenExp);
 
     if (isExpired) {
-      const err: IThowError = new Error('[HOUSEHOLD_API] Token expired');
-      localStorage.removeItem('authToken');
-
-      throw err;
+      const newToken = await this.authService.getRefreshToken();
+      if (newToken) {
+        localStorage.setItem('authToken', newToken.accessToken);
+        return newToken;
+      } else {
+        throw new Error('[HOUSEHOLD_API] Unable to refresh token');
+      }
     }
     return token;
   };

@@ -26,7 +26,8 @@ const useLogin = () => {
         setData(response.data);
 
         if (response.data) {
-          localStorage.setItem('authToken', response.data.token);
+          localStorage.setItem('authToken', response.data.accessToken);
+          localStorage.setItem('authRefreshToken', response.data.refreshToken);
         }
       } else {
         setIsError(true);

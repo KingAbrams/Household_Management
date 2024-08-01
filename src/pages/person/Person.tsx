@@ -8,29 +8,18 @@ import { useAuth } from '../../core/hooks/useAuth';
 const Person = () => {
   const { token } = useAuth();
   const navigate = useNavigate();
-  const {
-    persons,
-    isLoading,
-    isError,
-    status,
-    isExpiredToken,
-  }: IUsePersonData = usePersonData();
+  const { persons, isLoading, isError, isInvalidToken }: IUsePersonData =
+    usePersonData();
 
   useEffect(() => {
-    if (status === 401) {
-      navigate('./login');
-      return;
-    }
-  }, [status, navigate]);
-
-  useEffect(() => {
-    if (isExpiredToken) {
+    if (isInvalidToken) {
       navigate('/login');
     }
-  }, [isExpiredToken, navigate]);
+  }, [isInvalidToken, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('authRefreshToken');
     navigate('/login');
   };
 

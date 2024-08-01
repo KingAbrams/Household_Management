@@ -7,5 +7,6 @@ export type {
   ILoginResError,
   ILoginResSuccess,
   IData,
+  IResRefreshToken,
 } from './authServiceType';
 export type { IThowError } from './errorType';

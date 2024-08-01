@@ -5,6 +5,7 @@ import {
   ILoginResSuccess,
   IRegister,
   IResgisterResFetch,
+  IResRefreshToken,
 } from '../../../core/types';
 import ErrorService from '../tools/ErrorService';
 
@@ -85,6 +86,40 @@ class AuthService {
         message: errMessage,
         data: null,
       };
+    }
+  };
+
+  getRefreshToken = async (): Promise<IResRefreshToken> => {
+    try {
+      const response = await fetch(
+        `${AUTH_SERVICE_API_HOST}/auth/refreshToken`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('authRefreshToken')}`,
+          },
+        },
+      );
+
+      const responseBody = await response.json();
+
+      if (!response.ok) {
+        const apiPrefix = '[AUT_SERVICE_API] ';
+        const statusCode = `Status Code: ${response.status}`;
+        const errorMessage =
+          responseBody.error || responseBody.message || 'Unknown error';
+
+        const errorFullMessage = `${apiPrefix}${statusCode}\n${errorMessage}`;
+        throw new Error(errorFullMessage);
+      }
+
+      const data = responseBody;
+
+      return data;
+    } catch (error) {
+      const errMessage = `[AUT_SERVICE_API] Error refreshing token: ${error}`;
+      throw new Error(errMessage);
     }
   };
 }

@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { IPerson, IThowError, IUsePersonData } from '../types';
 import PersonService from '../../services/api/household_management/PersonService';
-import { IPersonFetchSuccess } from '../types/personType';
+import { IPersonFetchError, IPersonFetchSuccess } from '../types/personType';
 
 const usePersonData = (): IUsePersonData => {
   const [persons, setPersons] = useState<IPerson[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [status, setStatus] = useState<number | null>(null);
-  const [isExpiredToken, setIsExpiredToken] = useState(false);
+  const [isInvalidToken, setIsInvalidToken] = useState(false);
 
   useEffect(() => {
     const fetchPersonData = async () => {
       setIsLoading(true);
-      setIsExpiredToken(false);
+      setIsInvalidToken(false);
 
       try {
         const personService = new PersonService();
@@ -25,23 +25,26 @@ const usePersonData = (): IUsePersonData => {
 
           setPersons(data);
         } else {
+          const personData = response as IPersonFetchError;
+          const message = personData.message;
+          const errMsgInvalidToken = 'Error refreshing token';
           setIsError(true);
+
+          if (message.includes(errMsgInvalidToken)) {
+            setIsInvalidToken(true);
+          }
         }
 
         setStatus(response.status);
       } catch (error) {
         const errorToken = error as IThowError;
+        const errMsgExpiredToken =
+          '[HOUSEHOLD_API] Error fetching data from Person:';
 
         setIsError(true);
+        setIsInvalidToken(true);
 
-        if (errorToken.message.includes('Token expired')) {
-          setIsExpiredToken(true);
-        } else {
-          console.error(
-            '[HOUSEHOLD_API] Error fetching data from Person:',
-            error,
-          );
-        }
+        console.error(errMsgExpiredToken, error);
       } finally {
         setIsLoading(false);
       }
@@ -50,7 +53,7 @@ const usePersonData = (): IUsePersonData => {
     fetchPersonData();
   }, []);
 
-  return { persons, isLoading, isError, status, isExpiredToken };
+  return { persons, isLoading, isError, status, isInvalidToken };
 };
 
 export default usePersonData;
