@@ -1,4 +1,5 @@
 import { IPerson } from '../../core/types';
+import './tablePerson.css';
 
 interface ITablePersonProps {
   persons: IPerson[] | null;

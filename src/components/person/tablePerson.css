@@ -1,0 +1,40 @@
+table {
+  cursor: pointer;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  min-width: 400px;
+  width: auto;
+  margin: 20px auto;
+  box-shadow: 0px 0px 2px 0px rgb(166, 166, 166);
+}
+
+table thead tr {
+  background: midnightblue;
+  color: white;
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+}
+
+td,
+th {
+  padding: 6px;
+}
+
+tbody tr,
+td,
+th {
+  border: 1px solid #ddd;
+}
+
+tbody tr {
+  font-size: 0.9rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+tbody tr:last-of-type {
+  border-bottom: 2px solid midnightblue;
+}

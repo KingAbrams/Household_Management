@@ -9,11 +9,11 @@ export interface IAuthContext {
 }
 
 export const AuthContext = createContext<IAuthContext>({
-  token: localStorage.getItem('authToken'),
+  token: null,
 });
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [token, setToken] = useState(localStorage.getItem('authToken'));
+  const [token, setToken] = useState<string | null>(null);
 
   return (
     <AuthContext.Provider value={{ token }}>{children}</AuthContext.Provider>
