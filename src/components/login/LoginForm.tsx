@@ -75,16 +75,22 @@ const LoginForm = () => {
 
       <form className="form">
         <div className="form-group">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmailChange}
+          />
           <label>Email</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
         </div>
         <div className="form-group">
-          <label>Mot de passe</label>
           <input
             type="password"
+            placeholder="Mot de passe"
             value={password}
             onChange={handlePasswordChange}
           />
+          <label>Mot de passe</label>
         </div>
         <button
           className="login-button"

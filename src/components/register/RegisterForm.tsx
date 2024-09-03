@@ -123,53 +123,58 @@ const RegisterForm = () => {
       <form className="register-form">
         <div className="register-form-group-fullname">
           <div className="register-form-group it1">
-            <label>Nom</label>
             <input
               type="text"
+              placeholder="Nom"
               className={errorInput.lastname ? 'input-error' : ''}
               value={lastname}
               onChange={handleLastnameChange}
             />
+            <label>Nom</label>
           </div>
           <div className="register-form-group it2">
-            <label>Prénom</label>
             <input
               type="text"
+              placeholder="Prénom"
               className={errorInput.firstname ? 'input-error' : ''}
               value={firstname}
               onChange={handleFirstnameChange}
             />
+            <label>Prénom</label>
           </div>
         </div>
 
         <div className="register-form-group">
-          <label>Email</label>
           <input
             type="email"
+            placeholder="Email"
             className={errorInput.email ? 'input-error' : ''}
             value={email}
             onChange={handleEmailChange}
           />
+          <label>Email</label>
         </div>
 
         <div className="register-form-group">
-          <label>Mot de passe</label>
           <input
             type="password"
+            placeholder="Mot de passe"
             className={errorInput.password ? 'input-error' : ''}
             value={password}
             onChange={handlePasswordChange}
           />
+          <label>Mot de passe</label>
         </div>
 
         <div className="register-form-group">
-          <label>Confirmation</label>
           <input
             type="password"
+            placeholder="Confirmer mot de passe"
             className={errorInput.confirmPassword ? 'input-error' : ''}
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
+          <label>Confirmer mot de passe</label>
         </div>
 
         <div>

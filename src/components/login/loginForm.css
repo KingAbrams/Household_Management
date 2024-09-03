@@ -59,13 +59,16 @@
   font-size: var(--text-label);
   font-weight: 600;
   margin-bottom: 8px;
-  top: -12px;
+  top: 12px;
   left: 10px;
+  color: #999;
   background-color: white;
   padding-left: 6px;
   padding-right: 6px;
   padding-top: 2px;
   padding-bottom: 2px;
+  pointer-events: none;
+  transition: 0.2s ease all;
 }
 
 .form-group input {
@@ -91,8 +94,22 @@
   box-shadow: 0 0 0 0.5px var(--color-primary);
 }
 
-.form-group input::placeholder {
-  color: var(--color-grey);
+.form-group input:focus ~ label,
+.register-form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.register-form-group input:not(:placeholder-shown) ~ label {
+  top: -10px;
+  font-size: 0.7rem;
+}
+
+.form-group input:focus ~ label,
+.register-form-group input:focus ~ label {
+  color: var(--color-primary);
+}
+
+.form-group input::placeholder,
+.register-form-group input::placeholder {
+  color: transparent;
 }
 
 .form-group input[type='password'],
