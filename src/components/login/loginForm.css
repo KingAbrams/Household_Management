@@ -110,6 +110,7 @@
 .form-group input::placeholder,
 .register-form-group input::placeholder {
   color: transparent;
+  font-size: 0;
 }
 
 .form-group input[type='password'],
@@ -119,10 +120,6 @@
 
 .form-group input[type='password']:focus,
 .register-form-group input[type='password']:focus {
-  font-size: var(--text-password);
-}
-
-.form-group input[type='password']::placeholder {
   font-size: var(--text-password);
 }
 
