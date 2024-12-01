@@ -36,10 +36,12 @@ class FetchInterceptor {
         Authorization: `Bearer ${result.accessToken}`,
       };
 
-      return fetch(url, {
+      const refreshedResponse = await fetch(url, {
         ...options,
         headers: newHeaders,
       });
+
+      return refreshedResponse;
     }
     return response;
   };

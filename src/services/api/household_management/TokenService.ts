@@ -1,4 +1,3 @@
-import { IThowError } from '../../../core/types';
 import AuthService from '../auth_service/AuthService';
 
 class TokenService {
@@ -37,14 +36,17 @@ class TokenService {
     const isExpired = this.isTokenExpired(tokenExp);
 
     if (isExpired) {
-      const newToken = await this.authService.getRefreshToken();
-      if (newToken) {
-        localStorage.setItem('authToken', newToken.accessToken);
-        return newToken;
-      } else {
-        throw new Error('[HOUSEHOLD_API] Unable to refresh token');
+      try {
+        const newToken = await this.authService.getRefreshToken();
+        if (newToken) {
+          localStorage.setItem('authToken', newToken.accessToken);
+          return newToken;
+        }
+      } catch (error) {
+        throw new Error(`[HOUSEHOLD_API] Unable to refresh token ${error}`);
       }
     }
+
     return token;
   };
 }

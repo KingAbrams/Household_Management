@@ -16,9 +16,9 @@ class PersonService {
   }
 
   fetchPerson = async (): Promise<IPersonFetch> => {
-    const token = this.tokenService.validateToken();
-
     try {
+      const token = await this.tokenService.validateToken();
+
       const response = await this.fetchInterceptor.fetchWithRefresh(
         `${HOUSEHOLD_API_HOST}/api/persons`,
         {
