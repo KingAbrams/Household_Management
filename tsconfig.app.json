@@ -22,7 +22,13 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
     /* Updated by Me */
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+
+    // Shadcn
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }

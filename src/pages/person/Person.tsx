@@ -3,7 +3,8 @@ import TablePerson from '../../components/person/TablePerson';
 import usePersonData from '../../core/hooks/usePersonData';
 import { IUsePersonData } from '../../core/types';
 import { useEffect } from 'react';
-import { useAuth } from '../../core/hooks/useAuth';
+import { useAuth } from '@/core/hooks/useAuth';
+import { Button } from '@/components/ui/button';
 
 const Person = () => {
   const { token } = useAuth();
@@ -28,10 +29,12 @@ const Person = () => {
   }
 
   return (
-    <div>
-      <button onClick={handleLogout}>Déconnexion</button>
+    <div className="p-4">
+      <Button variant="outline" onClick={handleLogout}>
+        Déconnexion
+      </Button>
 
-      <p>Liste des personnes</p>
+      <p className="text-3xl">Liste des personnes</p>
 
       <TablePerson persons={persons} isLoading={isLoading} />
     </div>
