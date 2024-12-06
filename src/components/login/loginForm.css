@@ -28,11 +28,10 @@
 .login-alert-placeholder {
   height: 40px;
   margin-top: 10px;
-  margin-bottom: 4px;
 }
 
 .login-alert {
-  width: 80%;
+  width: 78%;
   margin: 0 auto;
   padding: 5px 10px;
   border: 1px solid transparent;
@@ -43,12 +42,13 @@
 
 .form,
 .form-footer {
-  padding: 10px 40px 10px 40px;
+  padding: 4px 40px 10px 40px;
 }
 
 .form-group {
   position: relative;
   margin-bottom: 16px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -74,7 +74,7 @@
 .form-group input {
   border: 1px solid #ccc;
   border-radius: 4px;
-  height: 20px;
+  height: 42px;
   margin-bottom: 6px;
   padding-top: 12px;
   padding-bottom: 8px;
@@ -153,11 +153,13 @@
 .register-form-footer {
   font-size: var(--text-label);
   padding-bottom: 20px;
+  margin-top: 40px;
 }
 
 .form-footer p,
 .register-form-footer p {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .form-footer a,
